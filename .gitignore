@@ -1,0 +1,17 @@
+.dockerignore
+Dockerfile
+docker-compose.yml
+.docker
+
+
+*.log
+*.pid
+*.out
+*.gz
+
+
+node_modules/
+vendor/
+
+.cache/
+
