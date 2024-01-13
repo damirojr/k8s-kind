@@ -1,36 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployments
+  name: capivara-deployment
 spec:
   replicas: 2
   template:
     metadata:
-      name: nginx
+      name: capivara-app
       labels: 
-        app: nginx
+        app: capivara-app
     spec:
       containers:
-        - name: nginx
+        - name: capivara-app
           image: damirojr/capivara:1.0
           ports: 
            - containerPort: 80
   selector:
     matchLabels:
-      app: nginx
-
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-loadbalancer
-spec:
-  type: LoadBalancer
-  selector:
-    app: nginx
-  ports:
-  - name: port-tcp
-    protocol: TCP
-    port: 8080
-    targetPort: 80
+      app: capivara-app
