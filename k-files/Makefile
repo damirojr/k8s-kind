@@ -70,26 +70,6 @@ k-create-hpa:
 k-delete-hpa:
 	@k delete -f hpa.yml
 
-## ## pods - kubectl get pod
-k-get-pod:
-	@k get pod
-
-## ## nodes - kubectl get nodes
-k-get-no:
-	@k get no
-
-## ## service - kubectl get service
-k-get-svc:
-	@k get svc
-
-## ## namespace - kubectl get namespace
-k-get-namespace:
-	@k get namespace
-
-## ## clusters -a - kubectl get clusters -a
-k-get-cluster:
-	@k get clusters -a
-
 ## ## port-forward - kubectl port-forward pod
 k-port-forward:
 	@kubectl port-forward pod/capivara-deployment-7497ddbfd4-l2c8v 8080:80
