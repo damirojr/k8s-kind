@@ -16,19 +16,19 @@ kind-cluster:
 
 ## make create kind cluster - kind create cluster --name
 kind-create-capivara-cluster:
-	@kind create cluster --name capivara-application --config ingress.yml
+	@kind create cluster --name capivara-application --config cluster-ingress.yml
 
 ## make delete kind cluster - kubectl delete cluster
 kind-destroy-cluster:
-	@kubectl delete cluster
+	@kind delete cluster
 
-## make destroy all namespaces - kubectl delete all namespaces
+## make delete all namespaces - kubectl delete all namespaces
 k-rm-all-ns:
 	@kubectl delete --all --all-namespaces
 
-## make destroy all cluster - kubectl delete all cluster
+## make delete all cluster - kubectl delete all cluster
 k-delete-all-cluster:
-	@k delete clusters --all
+	@kind delete clusters --all
 
 ## ## make create namespace - kubectl create namespace
 k-create-namespace:
