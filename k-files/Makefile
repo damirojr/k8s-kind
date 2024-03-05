@@ -32,43 +32,43 @@ k-delete-all-cluster:
 
 ## ## make create namespace - kubectl create namespace
 k-create-namespace:
-	@k apply -f namespace.yml
+	@kubectl apply -f namespace.yml
 
 ## ## make delete namespace - kubectl create delete
 k-create-delete:
-	@k apply -f delete.yml
+	@kubectl apply -f delete.yml
 
 ## ## make create deployment - kubectl delete deployment
 k-create-deployment:
-	@k apply -f deployment.yml
+	@kubectl apply -f deployment.yml
 
 ## ## make delete deployment - kubectl delete deployment
 k-delete-deployment:
-	@k delete -f deployment.yml
+	@kubectl delete -f deployment.yml
 
 ## make delete service - kubectl delete service
 k-create-service:
-	@k apply -f service.yml
+	@kubectl apply -f service.yml
 
 ## make create service - kubectl create service
 k-delete-service:
-	@k delete -f service.yml
+	@kubectl delete -f service.yml
 
 ## ## make create ingress - kubectl create ingress
 k-create-ingress:
-	@k apply -f ingress.yml
+	@kubectl apply -f ingress.yml
 
 ## ## make delete ingress - kubectl create delete
 k-delete-ingress:
-	@k delete -f ingress.yml
+	@kubectl delete -f ingress.yml
 
 ## ## make create hpa - kubectl create hpa
 k-create-hpa:
-	@k apply -f hpa.yml
+	@kubectl apply -f hpa.yml
 
 ## ## make delete hpa - kubectl delete hpa
 k-delete-hpa:
-	@k delete -f hpa.yml
+	@kubectl delete -f hpa.yml
 
 ## ## port-forward - kubectl port-forward pod
 k-port-forward:
