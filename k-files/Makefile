@@ -1,4 +1,4 @@
-.PHONY: kind-cluster, kind-destroy, k-rm-all-ns, k-delete-service 
+.PHONY: kind-cluster, kind-destroy-cluster, kind-create-capivara-cluster, k-rm-all-ns, k-delete-service, k-delete-all-cluster, k-create-namespace, k-create-deployment, k-delete-deployment, k-create-service, k-delete-service, k-create-ingress, k-delete-ingress, k-create-hpa, k-delete-hpa, k-get-pod, k-get-no, k-get-svc, k-get-namespace, k-get-cluster, k-port-forward
 
 help: 
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//' 
@@ -6,22 +6,91 @@ help:
 .DEFAULT_GOAL := help
 ##
 ## ------------------------------------
-## k8s 
+## k8s Makefile
 ## ------------------------------------
 ##
 
-## make create kind cluster - kubectl apply cluster
+## make create kind cluster - kind create cluster
 kind-cluster:
-	@k apply -f cluster-ingress.yml
+	@kind create cluster
 
-## make destroy kind cluster - kubectl destroy cluster
-kind-destroy:
-	@k delete -f cluster-ingress.yml
+## make create kind cluster - kind create cluster --name
+kind-create-capivara-cluster:
+	@kind create cluster --name capivara-application --config ingress.yml
+
+## make delete kind cluster - kubectl delete cluster
+kind-destroy-cluster:
+	@kubectl delete cluster
 
 ## make destroy all namespaces - kubectl delete all namespaces
 k-rm-all-ns:
-	@k delete --all --all-namespaces
+	@kubectl delete --all --all-namespaces
+
+## make destroy all cluster - kubectl delete all cluster
+k-delete-all-cluster:
+	@k delete clusters --all
+
+## ## make create namespace - kubectl create namespace
+k-create-namespace:
+	@k apply -f namespace.yml
+
+## ## make delete namespace - kubectl create delete
+k-create-delete:
+	@k apply -f delete.yml
+
+## ## make create deployment - kubectl delete deployment
+k-create-deployment:
+	@k apply -f deployment.yml
+
+## ## make delete deployment - kubectl delete deployment
+k-delete-deployment:
+	@k delete -f deployment.yml
 
 ## make delete service - kubectl delete service
+k-create-service:
+	@k apply -f service.yml
+
+## make create service - kubectl create service
 k-delete-service:
 	@k delete -f service.yml
+
+## ## make create ingress - kubectl create ingress
+k-create-ingress:
+	@k apply -f ingress.yml
+
+## ## make delete ingress - kubectl create delete
+k-delete-ingress:
+	@k delete -f ingress.yml
+
+## ## make create hpa - kubectl create hpa
+k-create-hpa:
+	@k apply -f hpa.yml
+
+## ## make delete hpa - kubectl delete hpa
+k-delete-hpa:
+	@k delete -f hpa.yml
+
+## ## pods - kubectl get pod
+k-get-pod:
+	@k get pod
+
+## ## nodes - kubectl get nodes
+k-get-no:
+	@k get no
+
+## ## service - kubectl get service
+k-get-svc:
+	@k get svc
+
+## ## namespace - kubectl get namespace
+k-get-namespace:
+	@k get namespace
+
+## ## clusters -a - kubectl get clusters -a
+k-get-cluster:
+	@k get clusters -a
+
+## ## port-forward - kubectl port-forward pod
+k-port-forward:
+	@kubectl port-forward pod/capivara-deployment-7497ddbfd4-l2c8v 8080:80
+
